@@ -18,9 +18,4 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
-module.exports = {
-    getDb: function() {
-        
-        return db;
-    }
-};
+module.exports = client 

@@ -54,6 +54,7 @@ const logInHandler = (event) => {
   axios.post('http://localhost:5000/login', thisuser ).then((response) => {
     if (response.data == 'User not found') {
       alert('User not found')
+      document.location.reload()
     } else {
       response.data.loggedIn = true
       
