@@ -40,6 +40,7 @@ import footBar from './components/foot-bar.vue';
 import logIn from './components/log-in.vue';
 import axios from 'axios';
 
+
 const user = {
   loggedIn: false
 
@@ -48,10 +49,18 @@ const user = {
 
 const logInHandler = (event) => {
   
-  const user = event
+  const thisuser = event
 
-  axios.get('http://localhost:5000/login', { user } ).then((response) => {
-    console.log(response.data)
+  axios.post('http://localhost:5000/login', thisuser ).then((response) => {
+    if (response.data == 'User not found') {
+      alert('User not found')
+    } else {
+      response.data.loggedIn = true
+      
+      user.value = response.data
+      
+      
+    }
   }).catch((error) => {
     console.log(error)
   })
