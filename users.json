@@ -1,0 +1,26 @@
+[
+    {
+        
+        "name": "John Doe",
+        "gender": "male",
+        "number": "1234567890",
+        "address": "123 Main St",
+        "zipcode": "12345",
+        "birthdate": "01/01/1990",
+        "username": "admin",
+        "password": "pass",
+        "permission": "admin"
+
+    },
+    {
+        "name": "Jane Doe",
+        "gender": "female",
+        "number": "1234567890",
+        "address": "123 Main St",
+        "zipcode": "12345",
+        "birthdate": "01/01/1990",
+        "username": "guest",
+        "password": "pass",
+        "permission": "guest"
+    }
+]

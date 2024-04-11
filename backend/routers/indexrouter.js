@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
     console.log('login route')
     
     let userattempt = req.body
-    let collection = conn.db('ClinicSystem').collection('users')
+    let collection = conn.db('ClinicSystem').collection('Users')
     let user = collection.findOne({username: userattempt.username, password: userattempt.password}).then((user) => {
         console.log(user)
          if (user != null) {
@@ -36,6 +36,22 @@ router.post('/login', async (req, res) => {
     
    
     
+    
+
+})
+
+router.get('/:field', (req, res) => {
+    let field = req.params.field
+    console.log(field)
+    const collection = conn.db('ClinicSystem').collection(`${field}`)
+    
+   collection.find({}, {projection: {_id: 0} }).toArray((err, result) => {
+       if (err) throw err
+       console.log(result)
+       res.send(result)
+   }).catch((error) => {
+       console.log(error)
+   })
     
 
 })

@@ -12,18 +12,28 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="/patients">Patients</a>
+          <a class="nav-link" href="/patients" v-if="user.permission == 'admin'">Patients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/doctors">Doctors</a>
+          <a class="nav-link" href="/doctors" v-if = "!user.loggedIn == false">Doctors</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/appointments" v-if="user.permission == 'admin'">Appointments</a>
-          <a class="nav-link" href="/appointments/{{ user }}" v-else>Your Appointments</a>
+          <a class="nav-link" href="/appointments/{{ user }}" v-else-if="user.loggedIn == true">Your Appointments</a>
+
+
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user/{{ user.id }}" >User</a>
-        </li>
+        
+        <li class="nav-item dropdown" v-if="user.loggedIn != false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          User
+        </a>
+        <div class="dropdown-menu dropdown-menu-left bg-dark" aria-labelledby="navbarDropdown" id="dropdownuser">
+          <a class="dropdown-item text-white" href="/user/{{ user.id }}">View Info</a>
+          <a class="dropdown-item text-white"  @click="$emit('logOut')">Log out</a>
+          
+        </div>
+      </li>
       </ul>
     </div>
   </nav>
@@ -34,9 +44,17 @@
 import { ref } from 'vue';
 const props = defineProps(['user'])
 const user = ref(props.user)
+if (!user.value) {
+  document.location.reload()
+}
 
 
 
 
 
 </script>
+<style>
+#dropdownuser {
+  right: 0;
+}
+</style>
