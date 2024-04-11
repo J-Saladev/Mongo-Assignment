@@ -45,14 +45,18 @@ router.get('/:field', (req, res) => {
     console.log(field)
     const collection = conn.db('ClinicSystem').collection(`${field}`)
     
-   collection.find({}, {projection: {_id: 0} }).toArray((err, result) => {
-       if (err) throw err
-       console.log(result)
-       res.send(result)
-   }).catch((error) => {
-       console.log(error)
-   })
-    
+    // this just never resolves
+//    collection.find({}, {projection: {_id: 0} }).toArray((err, result) => {
+//        if (err) throw err
+//        console.log(result)
+//        res.send(result)
+//    }).catch((error) => {
+//        console.log(error)
+//    })
+
+    // This returns an array but the array is empty vvv
+    const result = collection.find({}, {projection: {_id: 0} }).toArray()
+    res.send(result)
 
 })
 
