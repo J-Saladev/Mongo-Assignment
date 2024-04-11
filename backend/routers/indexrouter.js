@@ -43,20 +43,16 @@ router.post('/login', async (req, res) => {
 router.get('/:field', (req, res) => {
     let field = req.params.field
     console.log(field)
-    const collection = conn.db('ClinicSystem').collection(`${field}`)
+    const collection = conn.db('ClinicSystem').collection(field)
     
-    // this just never resolves
-//    collection.find({}, {projection: {_id: 0} }).toArray((err, result) => {
-//        if (err) throw err
-//        console.log(result)
-//        res.send(result)
-//    }).catch((error) => {
-//        console.log(error)
-//    })
+    
+   collection.find({}, {projection: {_id: 0} }).toArray().then((result) => {res.send(result)}).catch((error) => {
+       console.log(error)
+   })
 
     // This returns an array but the array is empty vvv
-    const result = collection.find({}, {projection: {_id: 0} }).toArray()
-    res.send(result)
+    // const result = collection.find({}, {projection: {_id: 0} }).toArray()
+    // res.send(result)
 
 })
 
