@@ -2,7 +2,7 @@
   <div>
     <div
       class="modal"
-      id="exampleModal"
+      id="addModal"
       tabindex="1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -11,9 +11,9 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content bg-dark text-light">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Dark Mode Modal</h5>
-            <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <h5 class="modal-title" id="exampleModalLabel">Add Or Edit</h5>
+            <button type="button" class="" data-dismiss="modal" aria-label="Close" @click="$emit('close')">
+              <i class="bi bi-x text-dark fa-2x" ></i>
             </button>
           </div>
           <div class="modal-body"><slot/></div>

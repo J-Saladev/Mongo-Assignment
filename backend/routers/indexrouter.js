@@ -56,5 +56,28 @@ router.get('/:field', (req, res) => {
 
 })
 
+router.post('/:field', (req, res) => {
+    let field = req.params.field
+    let data = req.body
+    const collection = conn.db('ClinicSystem').collection(field)
+    collection.insertOne(data).then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        console.log(error)
+    })
+})
+router.delete('/:field/:user', (req, res) => {
+    let field = req.params.field
+    let user = req.params.user
+   
+    const collection = conn.db('ClinicSystem').collection(field)
+    collection.deleteOne({username: user}).then((result) => {
+        res.send(result) 
+    }).catch((error) => {
+        console.log(error)
+    })
+    
+})
+
 module.exports = router
 
